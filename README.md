@@ -1,1 +1,509 @@
-# gooo-ni.sunflowers.github.io
+[해바라기 (1).html](https://github.com/user-attachments/files/32336408/1.html)
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>해바라기 농장에 어서오세요!</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+@font-face {
+  font-family: 'JejuStoneWall';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
+}
+:root{
+  --mustard:#EDB43E;
+  --mustard-soft:#F8E3B0;
+  --ink:#1F1D1A;
+  --ink-soft:#6F6B64;
+  --mute:#A7A39B;
+  --rule:#D9D6CF;
+  --desk:#E8E6E1;
+  --sheet:#FBFAF7;
+  --display:'JejuStoneWall','Pretendard',sans-serif;
+  --body:'Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--desk);line-height:1.7;font-size:15px;letter-spacing:-0.01em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+img{max-width:100%;display:block}
+
+/* ---------- 페이지 전환 (JS 없이 :target) ---------- */
+.site{display:flex;flex-direction:column;min-height:100vh;padding:48px 20px}
+.page{display:none}
+.page:target{display:block}
+#main{display:block;order:-1}
+.page:target ~ #main{display:none}
+
+/* ---------- 종이 한 장 ---------- */
+.sheet{position:relative;max-width:920px;margin:0 auto;background:var(--sheet);box-shadow:0 1px 2px rgba(0,0,0,.06),0 28px 50px -30px rgba(0,0,0,.35);overflow:hidden}
+.sheet-body{padding:0 56px 56px}
+
+/* 헤더: 노란 블록 + 큰 번호 + 제목 + 마크 */
+.head{position:relative;display:flex;align-items:flex-end;gap:18px;padding:56px 56px 26px}
+.head::before{content:"";position:absolute;left:56px;top:0;width:170px;height:118px;background:var(--mustard)}
+.num{position:relative;font-family:var(--display);font-size:clamp(4rem,11vw,6.4rem);line-height:.8;letter-spacing:-.02em}
+.title{position:relative;font-family:var(--display);font-size:clamp(1.5rem,3.8vw,2.3rem);line-height:1.05;padding-bottom:2px;word-break:keep-all}
+.mark{position:absolute;right:56px;top:28px;width:46px;height:46px;background:var(--mustard);display:flex;align-items:center;justify-content:center}
+.mark span{width:24px;height:24px;background:var(--ink);color:var(--mustard);font-family:var(--display);font-size:.9rem;display:flex;align-items:center;justify-content:center;line-height:1}
+.subtitle{padding:0 56px;margin-bottom:34px}
+.subtitle h2{font-size:1.05rem;font-weight:800;padding-bottom:10px;border-bottom:1px solid var(--ink)}
+.subtitle p{font-size:.78rem;color:var(--ink-soft);margin-top:8px;font-weight:500}
+
+/* 라벨 + 내용 2단 행 */
+.row{display:grid;grid-template-columns:150px 1fr;gap:28px;padding:26px 0;border-top:1px solid var(--rule)}
+.row:first-child{border-top:0;padding-top:0}
+.label{font-size:.72rem;font-weight:700;line-height:1.5;color:var(--ink)}
+.label small{display:block;font-weight:500;color:var(--mute);margin-top:2px}
+.content p{max-width:62ch;margin-bottom:12px;color:#3A3732;word-break:keep-all}
+.content p:last-child{margin-bottom:0}
+.content p b{font-weight:700;color:var(--ink);box-shadow:inset 0 -.45em 0 var(--mustard-soft)}
+
+/* 하단 노란 띠 */
+.foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 56px 36px;padding-top:12px;border-top:4px solid var(--mustard);font-size:.72rem;color:var(--ink-soft);font-weight:600}
+.foot .brand{display:flex;align-items:center;gap:8px;color:var(--ink)}
+.foot .brand i{width:14px;height:14px;background:var(--mustard);display:inline-block}
+
+.back{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;border:1px solid var(--ink);padding:6px 14px;margin:0 56px 20px;background:var(--sheet)}
+.back:hover{background:var(--ink);color:var(--sheet)}
+
+/* ---------- 메인 표지 ---------- */
+.cover .head{padding-top:64px}
+.cover .head::before{width:210px;height:150px}
+.cover .title{font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.1}
+.hello{padding:0 56px;display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:44px}
+.frame{position:relative;align-self:start;background:#DEDBD4;overflow:hidden;min-height:220px}
+.frame:has(img:not([src=""])){min-height:0;background:none}
+.frame img{width:100%;height:auto}
+.frame img[src=""]{display:none}
+.frame .placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;color:var(--ink-soft);font-size:.82rem;padding:16px}
+.frame .placeholder b{font-family:var(--display);font-size:1.1rem;color:var(--ink);font-weight:normal}
+.frame img:not([src=""]) + .placeholder{display:none}
+.note{background:var(--mustard);padding:22px 22px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.note h3{font-family:var(--display);font-weight:normal;font-size:1.35rem;line-height:1.25}
+.note p{font-size:.86rem;line-height:1.65;color:#3A2E12;word-break:keep-all}
+.note dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.78rem;border-top:1px solid rgba(31,29,26,.35);padding-top:12px}
+.note dt{font-weight:700}
+@media (max-width:760px){.hello{grid-template-columns:1fr}}
+
+.index{padding:0 56px}
+.index-item{display:grid;grid-template-columns:90px 56px 1fr auto;align-items:center;gap:20px;padding:20px 0;border-top:1px solid var(--rule);transition:background .2s ease,padding .2s ease}
+.index-item:last-child{border-bottom:1px solid var(--rule)}
+.index-item:hover,.index-item:focus-visible{background:var(--mustard-soft);padding-left:14px;padding-right:14px}
+.index-item .n{font-family:var(--display);font-size:2.4rem;line-height:1}
+.index-item .circle{width:52px;height:52px;border-radius:50%;border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:1.35rem}
+.index-item strong{display:block;font-size:1rem;font-weight:700;word-break:keep-all}
+.index-item span{display:block;font-size:.82rem;color:var(--ink-soft);word-break:keep-all}
+.index-item .go{font-size:.75rem;font-weight:700;border-bottom:1px solid var(--ink);white-space:nowrap}
+
+/* ---------- 01 세계관 ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:.82rem;font-weight:600;padding:6px 14px;border:1px solid var(--ink)}
+.chips span:first-child{background:var(--ink);color:var(--sheet)}
+.split{display:grid;grid-template-columns:1fr 220px;gap:28px;align-items:start}
+.aside{background:var(--mustard);padding:20px}
+.aside h4{font-family:var(--display);font-weight:normal;font-size:1.1rem;margin-bottom:8px}
+.aside p{font-size:.82rem;color:#3A2E12;margin:0;line-height:1.6;word-break:keep-all}
+.cells{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--ink);border-left:1px solid var(--rule)}
+.cell{padding:18px 20px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.cell h4{font-size:.9rem;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.cell h4::before{content:"";width:8px;height:8px;background:var(--mustard)}
+.cell p{font-size:.84rem;color:var(--ink-soft);margin:0;word-break:keep-all}
+
+/* ---------- 02 일과 ---------- */
+.schedule{list-style:none;border-top:1px solid var(--ink)}
+.schedule li{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:12px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.schedule time{font-size:.86rem;font-weight:700;font-variant-numeric:tabular-nums}
+.schedule li.work time{background:var(--mustard);padding:0 6px;justify-self:start}
+.schedule li.night time{background:var(--ink);color:var(--sheet);padding:0 6px;justify-self:start}
+.schedule b{font-weight:700;margin-right:10px}
+.schedule em{font-style:normal;font-size:.86rem;color:var(--ink-soft)}
+
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.swatch{border:1px solid var(--rule);background:var(--sheet)}
+.swatch .chip{height:84px;padding:10px 12px;display:flex;flex-direction:column;justify-content:flex-end}
+.swatch .chip b{font-family:var(--display);font-weight:normal;font-size:1.05rem;line-height:1.1}
+.swatch .chip small{font-size:.7rem;font-weight:600;opacity:.8}
+.swatch dl{padding:10px 12px 12px;font-size:.78rem;line-height:1.5}
+.swatch dt{font-weight:700;margin-top:6px}
+.swatch dt:first-child{margin-top:0}
+.swatch dd{color:var(--ink-soft);word-break:keep-all}
+.s-spring .chip{background:#CFDDB0}
+.s-summer .chip{background:#7F9C5A;color:#fff}
+.s-harvest{border-color:var(--ink);outline:2px solid var(--mustard);outline-offset:-1px}
+.s-harvest .chip{background:var(--mustard);position:relative}
+.s-harvest .chip::after{content:"지금";position:absolute;top:10px;right:10px;font-size:.66rem;font-weight:700;background:var(--ink);color:var(--mustard);padding:1px 7px}
+.s-autumn .chip{background:#B97A45;color:#fff}
+.s-winter .chip{background:#BDBAB3}
+@media (max-width:860px){.swatches{grid-template-columns:repeat(2,1fr)}.s-harvest{grid-column:1/-1}}
+
+.weekend{display:flex;justify-content:space-between;align-items:center;gap:20px;background:var(--ink);color:var(--sheet);padding:20px 24px}
+.weekend h4{font-family:var(--display);font-weight:normal;font-size:1.3rem;color:var(--mustard);white-space:nowrap}
+.weekend p{font-size:.86rem;color:#D9D5CC;margin:0;word-break:keep-all}
+
+.zones{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.zones span{font-size:.78rem;font-weight:600;background:#EFEDE8;padding:4px 10px}
+.plan{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.building{border:1px solid var(--ink)}
+.building h4{font-size:.86rem;font-weight:800;padding:10px 14px;border-bottom:1px solid var(--ink)}
+.building.home h4{background:var(--mustard)}
+.building ul{list-style:none;padding:10px 14px 12px}
+.building li{font-size:.82rem;color:#3A3732;padding:3px 0 3px 14px;position:relative;word-break:keep-all}
+.building li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:1px;background:var(--ink)}
+.walk{grid-column:1/-1;font-size:.78rem;font-weight:700;display:flex;align-items:center;gap:10px}
+.walk::before,.walk::after{content:"";flex:1;border-top:1px dashed var(--ink)}
+@media (max-width:640px){.plan{grid-template-columns:1fr}}
+
+/* ---------- 03 커뮤니티 ---------- */
+.board{display:grid;grid-template-columns:1fr 230px;gap:28px;align-items:start}
+.posts{border-top:1px solid var(--ink)}
+.post{padding:20px 0;border-bottom:1px solid var(--rule)}
+.post-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px}
+.post h3{font-size:.98rem;font-weight:800;line-height:1.45;word-break:keep-all}
+.author{font-size:.74rem;color:var(--mute);white-space:nowrap;font-weight:600}
+.tag{display:inline-block;font-size:.66rem;font-weight:700;padding:1px 6px;margin-right:6px;vertical-align:2px}
+.tag.q{background:#DCE4EE;color:#2F4B70}
+.tag.info{background:var(--mustard)}
+.tag.troll{background:var(--ink);color:var(--sheet)}
+.post .text{font-size:.88rem;white-space:pre-line;color:#3A3732;word-break:keep-all}
+.comments{list-style:none;margin-top:12px;padding-left:14px;border-left:3px solid var(--mustard-soft)}
+.comments li{font-size:.83rem;padding:3px 0;color:#3A3732;word-break:keep-all}
+.comments b{font-weight:700;margin-right:6px}
+.comments .op b::after{content:"작성자";font-size:.62rem;margin-left:4px;padding:0 5px;background:var(--mustard);vertical-align:1px}
+.side{display:flex;flex-direction:column;gap:14px;position:sticky;top:20px}
+.meal{background:var(--mustard);padding:20px}
+.meal h4{font-family:var(--display);font-weight:normal;font-size:1.2rem;margin-bottom:12px}
+.meal dl{font-size:.84rem}
+.meal dt{font-size:.7rem;font-weight:700;border-top:1px solid rgba(31,29,26,.35);padding-top:8px;margin-top:8px}
+.meal dt:first-child{border-top:0;padding-top:0;margin-top:0}
+.legend{border:1px solid var(--rule);padding:16px 18px;font-size:.78rem;color:var(--ink-soft)}
+.legend h5{font-size:.72rem;font-weight:700;color:var(--ink);margin-bottom:8px}
+.legend p{margin:4px 0}
+@media (max-width:760px){.board{grid-template-columns:1fr}.side{position:static;order:-1}}
+
+/* ---------- 모바일 ---------- */
+@media (max-width:640px){
+  .site{padding:0}
+  .sheet{box-shadow:none}
+  .head{padding:44px 22px 20px}
+  .head::before{left:22px;width:120px;height:90px}
+  .cover .head::before{width:150px;height:112px}
+  .mark{right:22px;top:18px;width:38px;height:38px}
+  .mark span{width:20px;height:20px;font-size:.75rem}
+  .subtitle,.hello,.index{padding-left:22px;padding-right:22px}
+  .sheet-body{padding:0 22px 40px}
+  .back{margin:0 22px 16px}
+  .foot{margin:0 22px 28px}
+  .row{grid-template-columns:1fr;gap:12px}
+  .split{grid-template-columns:1fr}
+  .cells{grid-template-columns:1fr}
+  .schedule li{grid-template-columns:1fr;gap:2px}
+  .index-item{grid-template-columns:52px 1fr auto;gap:14px}
+  .index-item .n{display:none}
+  .index-item .circle{width:46px;height:46px;font-size:1.15rem}
+  .weekend{flex-direction:column;align-items:flex-start;gap:6px}
+}
+</style>
+</head>
+<body>
+<div class="site">
+
+  <!-- ================= 01 세계관 ================= -->
+  <section class="page" id="world">
+    <article class="sheet">
+      <header class="head">
+        <div class="num">01.</div>
+        <div class="title">세계관<br>가이드</div>
+        <div class="mark" aria-hidden="true"><span>해</span></div>
+      </header>
+      <a class="back" href="#main">← 목차로</a>
+      <div class="subtitle">
+        <h2>세계관 간단하게 확인하기</h2>
+        <p>인간과 수인이 공존하는 세계, 그리고 워킹홀리데이</p>
+      </div>
+      <div class="sheet-body">
+        <div class="row">
+          <div class="label">장르<small>Genre</small></div>
+          <div class="content"><div class="chips"><span>로맨스</span><span>일상</span><span>코믹</span><span>다공일수</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label">세계<small>World</small></div>
+          <div class="content split">
+            <div>
+              <p><b>인간</b>과 <b>수인</b>이 공존하는 사회이며, 대부분의 국가에서는 두 종족이 함께 살아간다. 다만 수인들은 종족 특유의 생활 방식과 공동체 문화 때문에 특정 지역에 밀집해 살아가는 경향이 강하며, 바다 건너 거대한 섬들과 군도 지역에는 수인 비율이 압도적으로 높은 국가들이 존재한다.</p>
+              <p>수인 사회는 인간 사회보다 재물욕이 적다. 자연과 노동 자체를 중요하게 여긴다. 때문에 기계화와 자동화가 매우 느리게 발전했으며, 대부분의 노동이 수작업으로 이루어진다. 그렇기 때문에 항상 일손이 부족하며, 이를 해결하기 위해 오래전부터 인간 노동자들을 받아들이기 시작했다.</p>
+            </div>
+            <aside class="aside">
+              <h4>워킹홀리데이 문화</h4>
+              <p>현재 인간들 사이에서는 수인 국가로 떠나는 워킹홀리데이가 크게 유행하고 있다. 수인들은 돈에 집착하지 않아 임금이 높은 편이며, 인간 기준으로는 단기간 고수익 아르바이트로 유명하다.</p>
+            </aside>
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">해바라기 농장<small>Farm</small></div>
+          <div class="content">
+            <div class="cells">
+              <div class="cell"><h4>시즌제 농장</h4><p>초여름부터 재배와 관리가 시작되고, 늦여름에서 초가을 수확철이 가장 바쁘다. 수확철마다 외부 워홀 노동자를 대량 모집한다.</p></div>
+              <div class="cell"><h4>기계화가 거의 없음</h4><p>씨앗 심기부터 씨앗 분리까지 대부분 손으로 한다. 일부 지역은 현대 기계를 자연을 해치는 물건으로 여기기도 한다.</p></div>
+              <div class="cell"><h4>높은 노동 강도</h4><p>해바라기 줄기와 꽃이 매우 크고 무거워 인간 노동자들은 적응에 어려움을 겪는다. 늑대 수인들은 이해하지 못한다.</p></div>
+              <div class="cell"><h4>구역</h4><p>재배 구역, 건조 구역, 씨앗 분리 작업장, 창고, 숙소 구역으로 나뉜다.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="foot"><span class="brand"><i></i>해바라기 농장</span><span>01 / 03</span></footer>
+    </article>
+  </section>
+
+  <!-- ================= 02 일과 ================= -->
+  <section class="page" id="farm">
+    <article class="sheet">
+      <header class="head">
+        <div class="num">02.</div>
+        <div class="title">농장 일과<br>가이드</div>
+        <div class="mark" aria-hidden="true"><span>해</span></div>
+      </header>
+      <a class="back" href="#main">← 목차로</a>
+      <div class="subtitle">
+        <h2>해바라기 농장 일과</h2>
+        <p>시간대별 일과, 계절별 작업, 농장 구조</p>
+      </div>
+      <div class="sheet-body">
+        <div class="row">
+          <div class="label">평일<small>월~금</small></div>
+          <div class="content">
+            <ol class="schedule">
+              <li><time>05:00</time><div><b>기상</b><em>늦잠자면 늑대들이 깨우러 다닌다...</em></div></li>
+              <li><time>05:00~06:00</time><div><b>아침식사</b><em>공동 숙소 1층 식당</em></div></li>
+              <li class="work"><time>06:00~11:00</time><div><b>오전 작업</b><em>계절별 작업 참고</em></div></li>
+              <li><time>11:00~12:00</time><div><b>점심식사</b><em>식당에서 식사</em></div></li>
+              <li class="work"><time>12:00~15:00</time><div><b>오후 작업</b><em>계절별 작업 참고</em></div></li>
+              <li><time>15:00~21:00</time><div><b>작업 종료</b><em>개인 시간, 저녁식사는 각자 해결</em></div></li>
+              <li class="night"><time>21:00~</time><div><b>소등</b><em>야간 외출은 권장하지 않음</em></div></li>
+            </ol>
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">계절별 작업<small>Season</small></div>
+          <div class="content">
+            <div class="swatches">
+              <div class="swatch s-spring"><div class="chip"><small>3~5월</small><b>봄</b></div><dl><dt>오전</dt><dd>밭갈이, 퇴비 섞기, 씨앗 선별·심기</dd><dt>오후</dt><dd>농기구 수리, 물길 정비</dd></dl></div>
+              <div class="swatch s-summer"><div class="chip"><small>6~7월</small><b>초여름</b></div><dl><dt>오전</dt><dd>물 운반, 잡초 제거, 지지대 세우기</dd><dt>오후</dt><dd>병충해 잎 따기, 솎아내기</dd></dl></div>
+              <div class="swatch s-harvest"><div class="chip"><small>8~9월</small><b>수확철</b></div><dl><dt>오전</dt><dd>해바라기 수확, 수레 운반, 건조대에 널기</dd><dt>오후</dt><dd>씨앗 분리, 선별, 자루 담기, 창고 정리</dd></dl></div>
+              <div class="swatch s-autumn"><div class="chip"><small>10~11월</small><b>늦가을</b></div><dl><dt>오전</dt><dd>줄기 베기, 밭 정리</dd><dt>오후</dt><dd>씨앗 출하, 퇴비 만들기</dd></dl></div>
+              <div class="swatch s-winter"><div class="chip"><small>12~2월</small><b>겨울</b></div><dl><dt>오전</dt><dd>창고 관리, 장작 패기</dd><dt>오후</dt><dd>건물 보수 (날씨가 나쁘면 생략)</dd></dl></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">주말<small>토·일</small></div>
+          <div class="content"><div class="weekend"><h4>무조건 휴식</h4><p>식사는 제공되지 않는다. 근처 마을로 나가거나 자유롭게 휴식!</p></div></div>
+        </div>
+        <div class="row">
+          <div class="label">농장 구조<small>Map</small></div>
+          <div class="content">
+            <div class="zones"><span>재배 구역</span><span>건조 구역</span><span>씨앗 분리 작업장</span><span>창고</span><span>숙소 구역</span></div>
+            <div class="plan">
+              <div class="building">
+                <h4>공동 숙소</h4>
+                <ul>
+                  <li>농장 옆 4층짜리 기숙사형 건물, 4인 1실</li>
+                  <li>침대, 작은 책상, 개인 사물함 등 필수품만 구비</li>
+                  <li>1층 공용 식당, 공용 샤워실, 공용 주방, 공용 휴게실</li>
+                  <li>숙소 뒤편 야외 세탁장</li>
+                </ul>
+              </div>
+              <div class="building home">
+                <h4>단독주택</h4>
+                <ul>
+                  <li>루일, 루이, 루세, 루네가 사는 2층 집</li>
+                  <li>거실, 주방, 개인 방 4개, 화장실 2개</li>
+                  <li>1층: 루세·루네의 방</li>
+                  <li>2층: 루일·루이의 방</li>
+                </ul>
+              </div>
+              <div class="walk">걸어서 2분</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="foot"><span class="brand"><i></i>해바라기 농장</span><span>02 / 03</span></footer>
+    </article>
+  </section>
+
+  <!-- ================= 03 커뮤니티 ================= -->
+  <section class="page" id="community">
+    <article class="sheet">
+      <header class="head">
+        <div class="num">03.</div>
+        <div class="title">익명<br>커뮤니티</div>
+        <div class="mark" aria-hidden="true"><span>해</span></div>
+      </header>
+      <a class="back" href="#main">← 목차로</a>
+      <div class="subtitle">
+        <h2>해바라기 익명 커뮤니티</h2>
+        <p>워홀러들이 몰래 떠드는 익명 게시판</p>
+      </div>
+      <div class="sheet-body">
+        <div class="board">
+          <div class="posts">
+
+            <article class="post">
+              <div class="post-top"><h3>흰머리 늑대 또 사람 들쳐메고 감</h3><span class="author">익명_3821</span></div>
+              <div class="text">ㅅㅂ 7구역 이랑에서 쉬던 신입 쌀포대처럼 메고 작업장 끌려감
+나도 몰래 앉아있었는데 나는 쳐다도 안 봄
+이게 차별이냐 다행이냐</div>
+              <ul class="comments">
+                <li><b>익명_1142</b>다행인 거지 병신아 ㅋㅋㅋㅋ</li>
+                <li><b>감자수프러버</b>근데 표정은 되게 진지하더라 "일해." 한마디 하고 끝</li>
+                <li><b>익명_7703</b>걔 힘 미쳤음 수레 두 개 혼자 끄는 거 봄</li>
+                <li class="op"><b>익명_3821</b>인간을 수레 취급하는 것 같긴 함</li>
+              </ul>
+            </article>
+
+            <article class="post">
+              <div class="post-top"><h3><span class="tag q">질문</span>관리자님이 여권 보관해주는 거 원래 규정임?</h3><span class="author">익명_5519</span></div>
+              <div class="text">계약서 다시 읽어봤는데 그런 말 없던데
+나만 불안하냐</div>
+              <ul class="comments">
+                <li><b>3년차워홀러</b>나 세 시즌째인데 여권 가져간 거 처음 들음</li>
+                <li><b>익명_0927</b>그 신입 첫날 새벽에 튀다가 걸렸다던데 ㅋㅋㅋ</li>
+                <li class="op"><b>익명_5519</b>아 그럼 그냥 도주 방지인가…</li>
+                <li><b>3년차워홀러</b>튀다 걸린 애는 매년 있었는데 여권은 안 뺏었음 ㅇㅇ 수상함</li>
+              </ul>
+            </article>
+
+            <article class="post">
+              <div class="post-top"><h3><span class="tag info">정보</span>보름달 기간 생존 가이드</h3><span class="author">3년차워홀러</span></div>
+              <div class="text">1. 해 지면 세탁장, 샤워장 혼자 가지 마셈
+2. 늑대들 눈 풀려 있으면 말 걸지 마셈
+3. 근데 솔직히 우리한텐 관심 없음. 걱정 ㄴㄴ
+4. 빨래는 낮에 해라 제발</div>
+              <ul class="comments">
+                <li><b>익명_4410</b>3번 때문에 1, 2번 의미 없어진 거 아님?</li>
+                <li><b>익명_8836</b>어제 세탁장 앞에 넷 다 모여있던데</li>
+                <li><b>익명_2217</b>ㄹㅇ? 누구 있었는데</li>
+                <li><b>익명_8836</b>알잖아 ^^</li>
+              </ul>
+            </article>
+
+            <article class="post">
+              <div class="post-top"><h3>막내 늑대 존나 귀엽다</h3><span class="author">익명_6092</span></div>
+              <div class="text">오늘 오후 씨앗 분리하는데 옆에 와서 "형 우리 몰래 쉴래?" 이럼
+따라 나갔다가 관리자님한테 걸려서 나만 벽 보고 서있음
+걔는 신입 옆으로 도망감</div>
+              <ul class="comments">
+                <li><b>익명_1142</b>이용당했네 ㅋㅋㅋㅋㅋ</li>
+                <li><b>루네최애</b>그 헤실거리는 얼굴 보면 화도 안 남</li>
+                <li class="op"><b>익명_6092</b>지랄ㄴ 화남 존나 남</li>
+                <li><b>익명_7703</b>걔 원래 신입 찾으러 가는 길에 너 미끼로 쓴 거임</li>
+              </ul>
+            </article>
+
+            <article class="post">
+              <div class="post-top"><h3><span class="tag troll">분탕</span>여기 늑대 농장 사실 사이비 아님?</h3><span class="author">해바라기씨안먹음</span></div>
+              <div class="text">기계 안 쓰는 거부터가 수상함
+저녁도 안 줌
+주말에만 쉬게 해줌 이게 노예지</div>
+              <ul class="comments">
+                <li><b>익명_3821</b>주 5일 근무를 노예라고 하면 한국 직장인 다 노예임</li>
+                <li><b>감자수프러버</b>급여 세 배 받고 징징 ㄴㄴ</li>
+                <li><b>익명_0927</b>저녁 안 주는 건 인정</li>
+                <li class="op"><b>해바라기씨안먹음</b>그니까 내 말이</li>
+              </ul>
+            </article>
+
+            <article class="post">
+              <div class="post-top"><h3>검은머리 늑대 아이스크림 어디서 나는 거임</h3><span class="author">익명_9954</span></div>
+              <div class="text">점심시간마다 들고 어슬렁거리는데 식당엔 안 팜
+신입 앞에서만 한 입 먹고 약 올림
+나도 먹고 싶다</div>
+              <ul class="comments">
+                <li><b>익명_4410</b>단독주택 냉동고에 박스째 있다는 소문</li>
+                <li><b>익명_2217</b>신입한테만 말 거는 거 소름 우리한텐 투명인간 취급</li>
+                <li class="op"><b>익명_9954</b>아이스크림 달라고 해볼까</li>
+                <li><b>익명_1142</b>다 먹은 막대기 받는다에 내 점심 건다</li>
+              </ul>
+            </article>
+
+          </div>
+          <aside class="side">
+            <div class="meal">
+              <h4>🍴 오늘의 식단표</h4>
+              <dl>
+                <dt>아침</dt><dd>꿀 팬케이크, 따뜻한 우유</dd>
+                <dt>점심</dt><dd>통닭구이, 버터감자</dd>
+              </dl>
+            </div>
+            <div class="legend">
+              <h5>말머리 안내</h5>
+              <p><span class="tag q">질문</span>궁금한 거 물어보기</p>
+              <p><span class="tag info">정보</span>꿀팁과 생존 정보</p>
+              <p><span class="tag troll">분탕</span>읽고 넘기세요</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <footer class="foot"><span class="brand"><i></i>해바라기 농장</span><span>03 / 03</span></footer>
+    </article>
+  </section>
+
+  <!-- ================= 메인 표지 (반드시 맨 마지막에 위치) ================= -->
+  <section class="page" id="main">
+    <article class="sheet cover">
+      <header class="head">
+        <div class="title">해바라기 농장에<br>어서오세요!</div>
+        <div class="mark" aria-hidden="true"><span>해</span></div>
+      </header>
+      <div class="subtitle">
+        <h2>워킹홀리데이 안내서</h2>
+        <p>늑대 수인들의 해바라기 농장</p>
+      </div>
+      <div class="hello">
+        <div class="frame">
+          <!-- ▼ 여기에 루일·루이·루세·루네 가로 이미지 주소를 넣으세요 ▼ -->
+          <img src="https://i.postimg.cc/xTvmgtgK/IMG-3137.jpg" alt="루일, 루이, 루세, 루네가 함께 있는 모습">
+        </div>
+        <div class="note">
+          <h3>수확철<br>워홀러 모집 중</h3>
+          <p>끝없이 이어진 해바라기밭에서 한 시즌을 보내게 됩니다. 일은 고되지만 급여는 확실합니다.</p>
+          <dl>
+            <dt>기간</dt><dd>협의 가능</dd>
+            <dt>근무</dt><dd>평일 05:00 ~ 15:00</dd>
+            <dt>숙소</dt><dd>당신 한정으로 공동 숙소 1인실 배정</dd>
+          </dl>
+        </div>
+      </div>
+      <nav class="index" aria-label="목차">
+        <a class="index-item" href="#world">
+          <div class="n">01</div>
+          <div class="circle" aria-hidden="true">🌍</div>
+          <div><strong>세계관 간단하게 확인하기</strong><span>인간과 수인이 공존하는 세계와 워홀 문화</span></div>
+          <div class="go">보기</div>
+        </a>
+        <a class="index-item" href="#farm">
+          <div class="n">02</div>
+          <div class="circle" aria-hidden="true">🌻</div>
+          <div><strong>해바라기 농장 일과 보러가기</strong><span>시간대별 일과와 계절별 작업, 농장 구조</span></div>
+          <div class="go">보기</div>
+        </a>
+        <a class="index-item" href="#community">
+          <div class="n">03</div>
+          <div class="circle" aria-hidden="true">💬</div>
+          <div><strong>해바라기 농장 익명 커뮤니티 확인하기</strong><span>워홀러들이 몰래 떠드는 익명 게시판</span></div>
+          <div class="go">보기</div>
+        </a>
+      </nav>
+      <div style="height:44px"></div>
+      <footer class="foot"><span class="brand"><i></i>해바라기 농장</span><span>워킹홀리데이 안내서</span></footer>
+    </article>
+  </section>
+
+</div>
+</body>
+</html>
